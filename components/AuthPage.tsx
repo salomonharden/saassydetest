@@ -38,9 +38,6 @@ const AuthPage: React.FC = () => {
         setError(null);
         const { error } = await supabase.auth.signInWithOAuth({
             provider: 'google',
-            options: {
-                redirectTo: 'https://saassyde.vercel.app/#/home',
-            },
         });
         if (error) {
             setError(error.message);
