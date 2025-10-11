@@ -310,6 +310,10 @@ const App: React.FC = () => {
 
         const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
             setSession(session);
+            // Clean up URL from OAuth redirect
+            if (window.location.hash.includes('access_token')) {
+                window.history.replaceState({}, document.title, window.location.pathname + window.location.search);
+            }
         });
 
         return () => subscription.unsubscribe();
