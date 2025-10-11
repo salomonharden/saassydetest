@@ -1,0 +1,266 @@
+<!-- This is the standard HTML5 doctype declaration. -->
+<!-- The root html element, with the language set to English. -->
+<html lang="en">
+  <head>
+    <!-- Specifies the character encoding for the document. -->
+    <meta charset="UTF-8" />
+    <!-- Sets the favicon for the website. -->
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <!-- Configures the viewport for responsive design, ensuring the site scales correctly on all devices. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- The title of the web page, displayed in the browser tab. -->
+    <title>SaasSyde</title>
+    <!-- Load Tailwind CSS from a CDN. This is loaded first to ensure base styles are available. -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Inline script to configure Tailwind CSS. -->
+    <script>
+      // Configure Tailwind CSS to use a 'class' strategy for dark mode.
+      // This means dark mode is activated by adding a 'dark' class to the html element.
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+            extend: {
+                colors: {
+                    // Define a custom color 'accent' that uses our CSS variable.
+                    // This allows us to use classes like 'bg-accent', 'text-accent', etc.
+                    accent: 'var(--color-accent)',
+                    'accent-hover': 'var(--color-accent-hover)',
+                    'accent-text-over': 'var(--color-accent-text-over)',
+                }
+            }
+        }
+      }
+    </script>
+    <!-- Link to the Font Awesome stylesheet for icons, loaded from a CDN. -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- Defines an import map for ES modules, allowing for bare module specifiers like 'react'. -->
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://aistudiocdn.com/react@^19.1.1",
+    "react-dom/client": "https://aistudiocdn.com/react-dom@^19.1.1/client",
+    "react/jsx-runtime": "https://aistudiocdn.com/react@^19.1.1/jsx-runtime",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.1.1/",
+    "react/": "https://aistudiocdn.com/react@^19.1.1/",
+    "recharts": "https://aistudiocdn.com/recharts@^2.12.7",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.21.0",
+    "@supabase/supabase-js": "https://aistudiocdn.com/@supabase/supabase-js@^2.44.4"
+  }
+}
+</script>
+<script>
+    // This script runs before the rest of the page loads to prevent a "Flash of Unstyled Content" (FOUC).
+    // It checks localStorage or the user's system preference to set the dark/light theme immediately.
+    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      // If dark mode is preferred, add the 'dark' class to the document's root element.
+      document.documentElement.classList.add('dark')
+    } else {
+      // Otherwise, remove the 'dark' class.
+      document.documentElement.classList.remove('dark')
+    }
+</script>
+<!-- A style block for custom CSS animations and styles not covered by Tailwind CSS. -->
+<style>
+    /*
+      CSS Variables for Dynamic Theming.
+      These variables are used by Tailwind's extended theme (see config script above)
+      and can be changed with JavaScript to update the site's accent color.
+    */
+    :root {
+      /* Default light theme colors */
+      --color-accent: #a452fd;
+      --color-accent-hover: #8e3ad6;
+      --color-accent-text-over: #ffffff;
+      --scrollbar-thumb: #c1c1c1;
+      --scrollbar-track: #f1f1f1;
+    }
+
+    html.dark {
+      /* Default dark theme colors */
+      --scrollbar-thumb: #737373;
+      --scrollbar-track: #18191A;
+    }
+    
+    /* Defines keyframes for a "like" animation. */
+    @keyframes like-animation {
+      0% { /* Starting state */
+        opacity: 0;
+        transform: scale(0.5);
+      }
+      50% { /* Middle state */
+        opacity: 1;
+        transform: scale(1.2);
+      }
+      100% { /* Ending state */
+        opacity: 0;
+        transform: scale(1.5);
+      }
+    }
+    /* A utility class to apply the 'like-animation'. */
+    .animate-like {
+      animation: like-animation 0.6s ease-in-out forwards;
+    }
+    
+    /* Defines keyframes for a small bounce animation. */
+    @keyframes bounce-sm {
+        0%, 100% { /* Start and end at normal size. */
+            transform: scale(1);
+        }
+        50% { /* Bounce to a larger size in the middle. */
+            transform: scale(1.25);
+        }
+    }
+    /* A utility class to apply the 'bounce-sm' animation. */
+    .animate-bounce-sm {
+        animation: bounce-sm 0.3s ease-in-out;
+    }
+
+    /* Defines keyframes for a count-up animation. */
+    @keyframes count-up {
+      from { /* Start from below and transparent. */
+        transform: translateY(10px);
+        opacity: 0;
+      }
+      to { /* End at the original position and fully visible. */
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+    /* A utility class to apply the 'count-up' animation. */
+    .animate-count-up {
+      display: inline-block; /* Required for transform animations. */
+      animation: count-up 0.3s ease-out;
+    }
+
+    /* Defines keyframes for a slide-up and fade-in animation. */
+    @keyframes slide-up-fade-in {
+      from { /* Start from below and transparent. */
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to { /* End at the original position and fully visible. */
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    /* A utility class for the reaction palette animation. */
+    .reaction-palette-animate {
+      animation: slide-up-fade-in 0.2s ease-out forwards;
+    }
+    
+    /* Defines keyframes for a reaction icon grow animation on hover. */
+    @keyframes reaction-icon-grow {
+        0%, 100% { transform: scale(1); } /* Start and end at normal size. */
+        50% { transform: scale(1.3); } /* Grow larger in the middle. */
+    }
+    /* A utility class to apply the 'reaction-icon-grow' animation on hover. */
+    .reaction-icon-grow:hover {
+        animation: reaction-icon-grow 0.3s ease-in-out;
+    }
+    
+    /* --- Animation Keyframes for Page Load --- */
+    @keyframes slide-in-from-left {
+      from {
+        opacity: 0;
+        transform: translateX(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes slide-in-from-right {
+      from {
+        opacity: 0;
+        transform: translateX(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes fade-in-slide-up {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* --- Animation for Chat Messages --- */
+    @keyframes slide-up-fade-in-chat {
+      from {
+        opacity: 0;
+        transform: translateY(10px) scale(0.98);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+    .animate-slide-up-fade-in-chat {
+      animation: slide-up-fade-in-chat 0.3s ease-out forwards;
+    }
+
+    /* --- Animation Utility Classes --- */
+    .animate-slide-in-left {
+      animation: slide-in-from-left 0.5s ease-out forwards;
+    }
+
+    .animate-slide-in-right {
+      animation: slide-in-from-right 0.5s ease-out forwards;
+    }
+
+    .animate-fade-in-slide-up {
+      opacity: 0; /* Start hidden to prevent flash of content */
+      animation: fade-in-slide-up 0.6s ease-out forwards;
+    }
+
+
+    /* Custom Scrollbar Styles */
+    /* For Firefox browsers. */
+    html {
+      /* Sets the scrollbar thumb and track colors for light mode. */
+      scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+    }
+
+    /* For Webkit-based browsers (Chrome, Safari, Edge). */
+    /* Sets the width and height of the scrollbar. */
+    ::-webkit-scrollbar {
+      width: 12px;
+      height: 12px;
+    }
+
+    /* Styles the track of the scrollbar. */
+    ::-webkit-scrollbar-track {
+      background: var(--scrollbar-track);
+    }
+
+    /* Styles the thumb (the draggable part) of the scrollbar. */
+    ::-webkit-scrollbar-thumb {
+      background-color: var(--scrollbar-thumb);
+      border-radius: 10px;
+      border: 3px solid var(--scrollbar-track);
+    }
+
+    /* Styles the scrollbar thumb when hovered over. */
+    ::-webkit-scrollbar-thumb:hover {
+      background-color: var(--color-accent);
+    }
+</style>
+</head>
+  <!-- The body of the document, with default background colors for light and dark modes. -->
+  <body class="bg-neutral-100 dark:bg-[#18191A]">
+    <!-- The root div where the React application will be mounted. -->
+    <div id="root"></div>
+    <!-- The main script for the application, loaded as a module. -->
+    <script type="module" src="/index.tsx"></script>
+    <!-- Buy Me a Coffee Widget Script -->
+    <script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="SalomonChetchouang" data-description="Support me on Buy me a coffee!" data-message="please buy me a coffee to keep our sever live" data-color="#BD5FFF" data-position="Right" data-x_margin="18" data-y_margin="18"></script>
+  </body>
+</html>

@@ -1,0 +1,5 @@
+{
+  "name": "SaasSyde",
+  "description": "A social media web application interface inspired by Facebook, featuring a dark theme and a custom color palette. It showcases a classic three-column layout with a central feed, navigation sidebars, and interactive post elements.",
+  "requestFramePermissions": []
+}
