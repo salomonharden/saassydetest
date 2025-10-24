@@ -241,4 +241,57 @@ export const SettingsPage: React.FC<SettingsPageProps> = ({ currentUser, onUpdat
                                  <input
                                     type="url"
                                     name="url"
-                                    value
+                                    value={newPortfolioItem.url}
+                                    onChange={handlePortfolioChange}
+                                    placeholder="https://github.com/your-username"
+                                    className="w-full bg-neutral-100 dark:bg-[#3A3B3C] rounded-md p-2 focus:ring-2 focus:ring-accent focus:outline-none"
+                                />
+                                <button type="button" onClick={handleAddPortfolioItem} className="sm:col-span-2 bg-neutral-200 hover:bg-neutral-300 dark:bg-[#242526] dark:hover:bg-neutral-600 text-neutral-800 dark:text-neutral-200 font-semibold py-2 px-4 rounded-lg transition-colors h-fit">Add Link</button>
+                            </div>
+                        </div>
+
+                        <div className="pt-4 flex justify-end">
+                            <button type="submit" className="relative bg-accent hover:bg-accent-hover text-accent-text-over font-bold py-2 px-6 rounded-lg transition-colors">
+                                <span>Save Changes</span>
+                                {saveSuccess && (
+                                    <span className="absolute left-1/2 -translate-x-1/2 -bottom-8 bg-green-500 text-white text-xs font-semibold px-2 py-1 rounded-md animate-fade-in-slide-up">
+                                        Saved!
+                                    </span>
+                                )}
+                            </button>
+                        </div>
+                    </form>
+                </SettingsCard>
+            </div>
+            
+            {/* Account Management */}
+            <div className="animate-fade-in-slide-up" style={{ animationDelay: '300ms' }}>
+                <SettingsCard title="Account Management">
+                    <div className="flex items-center justify-between">
+                        <div>
+                            <p className="font-medium">Deactivate Account</p>
+                            <p className="text-sm text-neutral-500 dark:text-neutral-400">This action cannot be undone.</p>
+                        </div>
+                        <button 
+                            onClick={() => setIsDeactivateModalOpen(true)}
+                            className="bg-red-100 hover:bg-red-200 dark:bg-red-900/40 dark:hover:bg-red-900/60 text-red-700 dark:text-red-400 font-semibold py-2 px-4 rounded-lg transition-colors"
+                        >
+                            Deactivate
+                        </button>
+                    </div>
+                </SettingsCard>
+            </div>
+
+            <DeleteConfirmationModal
+                isOpen={isDeactivateModalOpen}
+                onClose={() => setIsDeactivateModalOpen(false)}
+                onConfirm={() => {
+                    alert("Account deactivation is not implemented in this demo.");
+                    setIsDeactivateModalOpen(false);
+                }}
+                title="Deactivate Account"
+                message="Are you sure you want to deactivate your account? All of your data will be permanently removed. This action cannot be undone."
+            />
+        </div>
+    );
+};
