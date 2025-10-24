@@ -344,7 +344,8 @@ const AdminPage: React.FC<AdminPageProps> = ({ analyticsData, retentionData, fee
             signups: number;
             screenViews: { [key: string]: number };
             buttonClicks: { [key: string]: number };
-        }>((acc, day) => {
+// FIX: Explicitly typed the 'day' parameter in the reduce callback to fix type inference issues.
+        }>((acc, day: AnalyticsData) => {
             acc.signups += day.signups;
             
             for (const screen in day.screenViews) {

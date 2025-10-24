@@ -50,7 +50,7 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({ user, currentUser, active
         {/* This div matches the content container below it for width and horizontal padding */}
         <div className="w-full lg:max-w-2xl mx-auto px-0 md:px-4 pt-4">
             {/* This is the actual floating, rounded card, styled like the team chat header */}
-            <div className="relative bg-white/80 dark:bg-[#242526]/80 backdrop-blur-md shadow-lg border border-neutral-200 dark:border-neutral-600 rounded-xl">
+            <div className="relative bg-white/80 dark:bg-black/80 backdrop-blur-md shadow-lg border border-neutral-200 dark:border-neutral-800 rounded-xl">
                 {onBack && (
                      <button onClick={onBack} aria-label="Back" className="absolute top-2 left-2 w-10 h-10 rounded-full flex items-center justify-center hover:bg-neutral-100 dark:hover:bg-[#3A3B3C] transition-colors">
                         <i className="fa-solid fa-arrow-left text-lg"></i>
@@ -63,7 +63,7 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({ user, currentUser, active
                     <div className="flex flex-col sm:flex-row items-center sm:items-end sm:space-x-5 pt-4">
                       <div className="flex-shrink-0 -mt-20 sm:-mt-20"> {/* Negative margin to pull avatar up */}
                         <img
-                          className="h-32 w-32 sm:h-40 sm:w-40 rounded-full object-cover ring-4 ring-white dark:ring-[#242526]"
+                          className="h-32 w-32 sm:h-40 sm:w-40 rounded-full object-cover ring-4 ring-white dark:ring-black"
                           src={user.avatarUrl}
                           alt={user.name}
                         />
@@ -106,7 +106,7 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({ user, currentUser, active
                     </div>
 
                     {/* Divider line. */}
-                    <hr className="border-neutral-200/50 dark:border-neutral-600/50 mt-2" />
+                    <hr className="border-neutral-200/50 dark:border-neutral-800/50 mt-2" />
 
                     {/* Profile navigation and stats */}
                     <div className="flex justify-between items-center">

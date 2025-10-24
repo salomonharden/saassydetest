@@ -60,7 +60,7 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ onNavigate, currentPage, noti
   return (
     <aside className={`
       hidden md:flex flex-col
-      w-64 p-4 bg-neutral-50 dark:bg-[#242526] shadow-lg 
+      w-64 p-4 bg-neutral-50 dark:bg-black shadow-lg 
       sticky top-16 h-[calc(100vh-4rem)]
       animate-slide-in-left
     `}>

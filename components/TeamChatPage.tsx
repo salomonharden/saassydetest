@@ -140,11 +140,11 @@ const TeamChatPage: React.FC<TeamChatPageProps> = ({
     }, [post.chat]);
 
     return (
-        <div className="flex w-full h-[calc(100vh-4rem)] bg-neutral-100 dark:bg-[#18191A]">
+        <div className="flex w-full h-[calc(100vh-4rem)] bg-neutral-100 dark:bg-black">
             {/* Main Chat Area */}
-            <div className="flex-grow relative bg-neutral-100 dark:bg-[#18191A]">
+            <div className="flex-grow relative bg-neutral-100 dark:bg-black">
                 {/* Chat Header */}
-                <div className="absolute top-4 left-4 right-4 bg-white/80 dark:bg-[#242526]/80 backdrop-blur-md shadow-lg z-10 p-2 border border-neutral-200 dark:border-neutral-600 rounded-xl">
+                <div className="absolute top-4 left-4 right-4 bg-white/80 dark:bg-black/80 backdrop-blur-md shadow-lg z-10 p-2 border border-neutral-200 dark:border-neutral-800 rounded-xl">
                     <div className="flex items-center p-2">
                         <div>
                             <h1 className="text-lg font-bold text-neutral-900 dark:text-neutral-100 truncate">{post.idea.title}</h1>
@@ -160,7 +160,7 @@ const TeamChatPage: React.FC<TeamChatPageProps> = ({
                            if(item.type === 'date_separator') {
                                return (
                                 <div key={`date-${index}`} className="text-center my-4 animate-slide-up-fade-in-chat">
-                                    <span className="bg-neutral-200 dark:bg-neutral-600 text-neutral-600 dark:text-neutral-300 text-xs font-semibold px-3 py-1 rounded-full">{item.date}</span>
+                                    <span className="bg-neutral-200 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-300 text-xs font-semibold px-3 py-1 rounded-full">{item.date}</span>
                                 </div>
                                )
                            }
@@ -197,7 +197,7 @@ const TeamChatPage: React.FC<TeamChatPageProps> = ({
                 </div>
 
                 {/* Message Input area */}
-                <div className="absolute bottom-4 left-4 right-4 bg-white/80 dark:bg-[#242526]/80 backdrop-blur-md shadow-lg z-10 p-2 border border-neutral-200 dark:border-neutral-600 rounded-xl">
+                <div className="absolute bottom-4 left-4 right-4 bg-white/80 dark:bg-black/80 backdrop-blur-md shadow-lg z-10 p-2 border border-neutral-200 dark:border-neutral-800 rounded-xl">
                     <div className="p-2 flex items-end space-x-2">
                         <textarea
                             rows={1}

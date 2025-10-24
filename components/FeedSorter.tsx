@@ -30,7 +30,7 @@ const SortButton: React.FC<{
 const FeedSorter: React.FC<FeedSorterProps> = ({ currentSort, onSortChange }) => {
   const { t } = useI18n();
   return (
-    <div className="bg-white dark:bg-[#242526] rounded-lg shadow-md p-2 flex items-center space-x-2">
+    <div className="bg-white dark:bg-black rounded-lg shadow-md p-2 flex items-center space-x-2">
       <SortButton
         label={t('feedSorter.hot')}
         icon="fa-fire"

@@ -97,7 +97,7 @@ const PostDetailPage: React.FC<PostDetailPageProps> = ({
       </div>
 
       {/* Comment section container. */}
-      <div className="bg-white dark:bg-[#242526] rounded-none lg:rounded-b-lg shadow-md p-4 animate-fade-in-slide-up" style={{ animationDelay: '200ms' }}>
+      <div className="bg-white dark:bg-black rounded-none lg:rounded-b-lg shadow-md p-4 animate-fade-in-slide-up" style={{ animationDelay: '200ms' }}>
         {/* The new comment input area. */}
         <div className="flex items-start space-x-2 mb-4">
             {/* Current user's avatar. */}
@@ -120,7 +120,7 @@ const PostDetailPage: React.FC<PostDetailPageProps> = ({
             />
         </div>
 
-        <hr className="border-neutral-200 dark:border-neutral-600 my-4" />
+        <hr className="border-neutral-200 dark:border-neutral-800 my-4" />
 
         {/* The list of existing comments. */}
         <div className="space-y-4">

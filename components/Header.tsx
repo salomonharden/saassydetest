@@ -87,7 +87,7 @@ const Header: React.FC<HeaderProps> = ({
   // The JSX for the Header component.
   return (
     // The main header element with fixed positioning and styling.
-    <header className="fixed top-0 z-50 flex items-center justify-between w-full p-2 bg-white dark:bg-[#242526] border-b border-neutral-200 dark:border-neutral-700 shadow-md h-16">
+    <header className="fixed top-0 z-50 flex items-center justify-between w-full p-2 bg-white dark:bg-black border-b border-neutral-200 dark:border-neutral-800 shadow-md h-16">
       {/* Left section of the header. */}
       <div className="flex items-center flex-shrink-0">
         {/* Logo, clickable to navigate home. Its visibility is controlled by opacity. */}
@@ -152,16 +152,16 @@ const Header: React.FC<HeaderProps> = ({
                 <i className="fa-solid fa-bell text-xl"></i>
                 {/* Unread notification indicator dot. */}
                 {hasUnreadNotifications && (
-                  <span className="absolute top-1 right-1 block h-2 w-2 rounded-full bg-red-500 ring-2 ring-white dark:ring-[#242526]"></span>
+                  <span className="absolute top-1 right-1 block h-2 w-2 rounded-full bg-red-500 ring-2 ring-white dark:ring-black"></span>
                 )}
             </button>
             {/* The notifications dropdown panel, rendered conditionally. */}
             {isNotificationsOpen && (
-                <div className="absolute right-0 mt-2 w-80 sm:w-96 bg-white dark:bg-[#242526] border border-neutral-200 dark:border-neutral-600 rounded-lg shadow-xl py-1 max-h-[80vh] overflow-y-auto">
+                <div className="absolute right-0 mt-2 w-80 sm:w-96 bg-white dark:bg-black border border-neutral-200 dark:border-neutral-800 rounded-lg shadow-xl py-1 max-h-[80vh] overflow-y-auto">
                     <div className="px-4 py-2">
                       <h3 className="font-bold text-lg">{t('header.notifications')}</h3>
                     </div>
-                    <hr className="border-neutral-200 dark:border-neutral-600"/>
+                    <hr className="border-neutral-200 dark:border-neutral-800"/>
                     {/* Check if there are any notifications to display. */}
                     {notifications.length > 0 ? (
                       <ul>
@@ -215,7 +215,7 @@ const Header: React.FC<HeaderProps> = ({
             </button>
             {/* The user dropdown panel, rendered conditionally. */}
             {isDropdownOpen && (
-                <div className="absolute right-0 mt-2 w-48 bg-white dark:bg-[#242526] border border-neutral-200 dark:border-neutral-600 rounded-md shadow-lg py-1">
+                <div className="absolute right-0 mt-2 w-48 bg-white dark:bg-black border border-neutral-200 dark:border-neutral-800 rounded-md shadow-lg py-1">
                     {/* Profile link. */}
                     <button onClick={() => { onNavigate('profile', currentUser.id); setIsDropdownOpen(false); }} className="w-full text-left flex items-center px-4 py-2 text-sm text-neutral-800 dark:text-neutral-200 hover:bg-neutral-100 dark:hover:bg-[#3A3B3C]">
                         <i className="fa-solid fa-user w-6 mr-2"></i> {t('header.profile')}
@@ -224,7 +224,7 @@ const Header: React.FC<HeaderProps> = ({
                     <button onClick={() => { onNavigate('settings'); setIsDropdownOpen(false); }} className="w-full text-left flex items-center px-4 py-2 text-sm text-neutral-800 dark:text-neutral-200 hover:bg-neutral-100 dark:hover:bg-[#3A3B3C]">
                         <i className="fa-solid fa-cog w-6 mr-2"></i> {t('header.settings')}
                     </button>
-                    <hr className="border-neutral-200 dark:border-neutral-600 my-1"/>
+                    <hr className="border-neutral-200 dark:border-neutral-800 my-1"/>
                     {/* Theme toggle button. */}
                     <button onClick={onToggleTheme} className="w-full text-left flex items-center px-4 py-2 text-sm text-neutral-800 dark:text-neutral-200 hover:bg-neutral-100 dark:hover:bg-[#3A3B3C]">
                         {isDarkMode ? (
@@ -233,7 +233,7 @@ const Header: React.FC<HeaderProps> = ({
                             <><i className="fa-solid fa-moon w-6 mr-2"></i> {t('header.darkMode')}</>
                         )}
                     </button>
-                    <hr className="border-neutral-200 dark:border-neutral-600 my-1"/>
+                    <hr className="border-neutral-200 dark:border-neutral-800 my-1"/>
                     {/* Log Out button. */}
                     <button onClick={onLogout} className="w-full text-left flex items-center px-4 py-2 text-sm text-neutral-800 dark:text-neutral-200 hover:bg-neutral-100 dark:hover:bg-[#3A3B3C]">
                         <i className="fa-solid fa-right-from-bracket w-6 mr-2"></i> {t('header.logout')}

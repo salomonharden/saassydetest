@@ -28,7 +28,7 @@ const NavButton: React.FC<{
             <div className="relative">
                 <i className={`fa-solid ${icon} text-2xl`}></i>
                 {hasNotification && (
-                    <span className="absolute -top-0.5 -right-0.5 block h-2 w-2 rounded-full bg-red-500 ring-2 ring-white dark:ring-[#242526]"></span>
+                    <span className="absolute -top-0.5 -right-0.5 block h-2 w-2 rounded-full bg-red-500 ring-2 ring-white dark:ring-black"></span>
                 )}
             </div>
             <span className="text-xs mt-1 font-semibold">{label}</span>
@@ -45,7 +45,7 @@ const BottomNav: React.FC<BottomNavProps> = ({ onNavigate, currentPage, notifica
     const isProfileActive = currentPage === 'profile';
 
     return (
-        <nav className="md:hidden fixed bottom-0 left-0 right-0 z-40 h-16 bg-white dark:bg-[#242526] border-t border-neutral-200 dark:border-neutral-700 shadow-[0_-2px_5px_rgba(0,0,0,0.05)] dark:shadow-[0_-2px_5px_rgba(0,0,0,0.2)] flex items-stretch">
+        <nav className="md:hidden fixed bottom-0 left-0 right-0 z-40 h-16 bg-white dark:bg-black border-t border-neutral-200 dark:border-neutral-800 shadow-[0_-2px_5px_rgba(0,0,0,0.05)] dark:shadow-[0_-2px_5px_rgba(0,0,0,0.2)] flex items-stretch">
             <NavButton 
                 icon="fa-house"
                 label={t('bottomNav.home')}

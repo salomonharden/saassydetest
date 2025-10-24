@@ -22,7 +22,7 @@ const SidebarUser: React.FC<SidebarUserProps> = ({ user, isOnline = false, onCli
     <span className="font-semibold text-neutral-800 dark:text-neutral-200">{user.name}</span>
     {/* Online status indicator dot. */}
     {isOnline && (
-      <div className="absolute left-8 bottom-2 w-3 h-3 bg-green-500 rounded-full border-2 border-neutral-100 dark:border-[#18191A]"></div>
+      <div className="absolute left-8 bottom-2 w-3 h-3 bg-green-500 rounded-full border-2 border-neutral-100 dark:border-black"></div>
     )}
   </button>
 );
@@ -70,7 +70,7 @@ const TeamMembersSidebar: React.FC<{ post: PostData; allUsers: { [key: string]: 
     }, [teamMembers]);
 
     return (
-        <div className="bg-white dark:bg-[#242526] rounded-lg shadow-md p-4">
+        <div className="bg-white dark:bg-black rounded-lg shadow-md p-4">
             <h2 className="text-xl font-bold text-neutral-900 dark:text-neutral-100 mb-2">Team Members ({teamMembers.length})</h2>
             <nav className="flex flex-col space-y-1">
                 {teamMembers.map(member => (
@@ -217,7 +217,7 @@ const RightSidebar: React.FC<RightSidebarProps> = ({
         onToggleFollow={onToggleFollow} 
       />
       {/* Recommended Teams section. */}
-      <div className="bg-white dark:bg-[#242526] rounded-lg shadow-md p-4">
+      <div className="bg-white dark:bg-black rounded-lg shadow-md p-4">
         <h2 className="text-xl font-bold text-neutral-900 dark:text-neutral-100 mb-2">Discover Teams</h2>
         <nav className="flex flex-col space-y-1">
           {recommendedTeams.length > 0 ? (
@@ -235,7 +235,7 @@ const RightSidebar: React.FC<RightSidebarProps> = ({
       <hr className="my-4 border-transparent" />
 
       {/* Following section. */}
-      <div className="bg-white dark:bg-[#242526] rounded-lg shadow-md p-4">
+      <div className="bg-white dark:bg-black rounded-lg shadow-md p-4">
           <h2 className="text-xl font-bold text-neutral-900 dark:text-neutral-100 mb-2">Following</h2>
           <nav className="flex flex-col space-y-1">
             {following.length > 0 ? (

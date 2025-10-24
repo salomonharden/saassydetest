@@ -87,11 +87,11 @@ export const CreatePostModal: React.FC<{ onClose: () => void; onSubmit: (idea: I
     >
       {/* The modal content container. Stop propagation to prevent clicks inside from closing it. */}
       <div 
-        className="bg-white dark:bg-[#242526] rounded-lg shadow-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto"
+        className="bg-white dark:bg-black rounded-lg shadow-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto"
         onClick={e => e.stopPropagation()}
       >
         {/* Modal Header. */}
-        <div className="sticky top-0 bg-white dark:bg-[#242526] p-4 border-b border-neutral-200 dark:border-neutral-600 flex justify-between items-center">
+        <div className="sticky top-0 bg-white dark:bg-black p-4 border-b border-neutral-200 dark:border-neutral-800 flex justify-between items-center">
           <h2 className="text-xl font-bold">Share Your SaaS Idea</h2>
           <button onClick={onClose} className="text-neutral-500 dark:text-neutral-400 hover:text-black dark:hover:text-white transition-colors">
             <i className="fa-solid fa-times text-2xl"></i>
@@ -185,7 +185,7 @@ export const CreatePostModal: React.FC<{ onClose: () => void; onSubmit: (idea: I
                             How to create a permanent link? <i className={`fa-solid fa-chevron-${showDiscordHelp ? 'up' : 'down'} ml-1 text-xs`}></i>
                         </button>
                         {showDiscordHelp && (
-                            <div className="text-xs text-neutral-600 dark:text-neutral-300 bg-neutral-200 dark:bg-[#242526] p-3 rounded-md mb-2 space-y-1">
+                            <div className="text-xs text-neutral-600 dark:text-neutral-300 bg-neutral-200 dark:bg-[#3A3B3C] p-3 rounded-md mb-2 space-y-1">
                                 <p className="font-semibold">First, create a Discord Server if you don't have one.</p>
                                 <ol className="list-decimal list-inside space-y-1 pl-2">
                                     <li>Open your server, click the server name (top-left) &gt; <strong>Invite People</strong>.</li>
@@ -202,7 +202,7 @@ export const CreatePostModal: React.FC<{ onClose: () => void; onSubmit: (idea: I
                             value={discordLink}
                             onChange={(e) => setDiscordLink(e.target.value)}
                             placeholder="https://discord.gg/your-invite-code"
-                            className="w-full bg-white dark:bg-[#242526] rounded-md p-2 focus:ring-2 focus:ring-accent focus:outline-none"
+                            className="w-full bg-white dark:bg-[#3A3B3C] rounded-md p-2 focus:ring-2 focus:ring-accent focus:outline-none"
                             required
                         />
                      </div>
@@ -215,14 +215,14 @@ export const CreatePostModal: React.FC<{ onClose: () => void; onSubmit: (idea: I
                             value={currentQuestion}
                             onChange={(e) => setCurrentQuestion(e.target.value)}
                             placeholder="e.g., What's your experience with React?"
-                            className="flex-grow bg-white dark:bg-[#242526] rounded-md p-2 focus:ring-2 focus:ring-accent focus:outline-none"
+                            className="flex-grow bg-white dark:bg-[#3A3B3C] rounded-md p-2 focus:ring-2 focus:ring-accent focus:outline-none"
                         />
                         <button type="button" onClick={handleAddQuestion} className="bg-neutral-200 hover:bg-neutral-300 dark:bg-[#242526] dark:hover:bg-neutral-600 text-neutral-800 dark:text-neutral-200 font-semibold py-2 px-4 rounded-lg transition-colors">Add</button>
                     </div>
                     {/* List of added questions. */}
                     <ul className="space-y-2">
                         {questions.map((q, index) => (
-                            <li key={index} className="flex items-center justify-between bg-white dark:bg-[#242526] p-2 rounded-md">
+                            <li key={index} className="flex items-center justify-between bg-white dark:bg-[#3A3B3C] p-2 rounded-md">
                                 <span className="text-sm">{q}</span>
                                 <button type="button" onClick={() => handleRemoveQuestion(index)} className="text-red-500 hover:text-red-700 dark:hover:text-red-400">
                                     <i className="fa-solid fa-trash"></i>
@@ -250,7 +250,7 @@ export const CreatePostModal: React.FC<{ onClose: () => void; onSubmit: (idea: I
 const CreatePost: React.FC<CreatePostTriggerProps> = ({ onOpenModal, currentUser }) => {
   return (
     // Main container for the trigger component.
-    <div className="bg-white dark:bg-[#242526] p-4 rounded-lg shadow-md">
+    <div className="bg-white dark:bg-black p-4 rounded-lg shadow-md">
       <div className="flex items-center">
         {/* User's avatar. */}
         <img src={currentUser.avatarUrl} alt={`${currentUser.name}'s Avatar`} className="w-10 h-10 rounded-full mr-3" />

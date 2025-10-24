@@ -67,7 +67,7 @@ const ProfileIntro: React.FC<ProfileIntroProps> = ({ user, currentUser, onUpdate
 
   return (
     <div className="sticky top-16 space-y-4">
-      <div className="bg-white dark:bg-[#242526] rounded-lg shadow-md p-4">
+      <div className="bg-white dark:bg-black rounded-lg shadow-md p-4">
         <h2 className="text-xl font-bold text-neutral-900 dark:text-neutral-100 mb-2">Intro</h2>
         
         {isEditingBio ? (
@@ -117,7 +117,7 @@ const ProfileIntro: React.FC<ProfileIntroProps> = ({ user, currentUser, onUpdate
         
         {user.skills && user.skills.length > 0 && (
           <>
-            <hr className="my-4 border-neutral-200 dark:border-neutral-600"/>
+            <hr className="my-4 border-neutral-200 dark:border-neutral-800"/>
             <h3 className="text-lg font-bold text-neutral-900 dark:text-neutral-100 mb-3">Skills</h3>
             <div className="flex flex-wrap gap-2">
               {user.skills.map(skill => (
@@ -131,7 +131,7 @@ const ProfileIntro: React.FC<ProfileIntroProps> = ({ user, currentUser, onUpdate
 
         {user.portfolio && user.portfolio.length > 0 && (
           <>
-            <hr className="my-4 border-neutral-200 dark:border-neutral-600"/>
+            <hr className="my-4 border-neutral-200 dark:border-neutral-800"/>
             <h3 className="text-lg font-bold text-neutral-900 dark:text-neutral-100 mb-3">Portfolio</h3>
             <ul className="space-y-1">
               {user.portfolio.map((item, index) => (

@@ -6,7 +6,7 @@ const PostSkeleton: React.FC = () => {
   // Return the JSX for the skeleton loader.
   return (
     // Main container that mimics the Post component's structure, with an animation class.
-    <div className="bg-white dark:bg-[#242526] rounded-none lg:rounded-lg shadow-md p-4 animate-pulse w-full">
+    <div className="bg-white dark:bg-black rounded-none lg:rounded-lg shadow-md p-4 animate-pulse w-full">
       {/* Skeleton for the Post Header. */}
       <div className="flex items-center mb-4">
         {/* Placeholder for the avatar. */}

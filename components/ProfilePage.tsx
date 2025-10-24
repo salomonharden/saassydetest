@@ -104,7 +104,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({
             />
           </div>
         )) : (
-            <div className="bg-white dark:bg-[#242526] rounded-lg shadow-md p-8 text-center text-neutral-500 dark:text-neutral-400 animate-fade-in-slide-up" style={{ animationDelay: '300ms' }}>
+            <div className="bg-white dark:bg-black rounded-lg shadow-md p-8 text-center text-neutral-500 dark:text-neutral-400 animate-fade-in-slide-up" style={{ animationDelay: '300ms' }}>
               <i className="fa-solid fa-pen-ruler text-4xl mb-4"></i>
               <h3 className="font-semibold text-lg">No Posts Yet</h3>
               <p>{user.name} hasn't shared any ideas yet.</p>

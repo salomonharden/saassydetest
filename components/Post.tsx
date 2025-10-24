@@ -132,7 +132,7 @@ const Post: React.FC<PostProps> = ({
   };
 
   return (
-    <div className="bg-white dark:bg-[#242526] rounded-none lg:rounded-lg shadow-md w-full">
+    <div className="bg-white dark:bg-black rounded-none lg:rounded-lg shadow-md w-full">
       <div className="p-4">
         {/* Post Header */}
         <div className="flex items-start justify-between">
@@ -150,7 +150,7 @@ const Post: React.FC<PostProps> = ({
                     <i className="fa-solid fa-ellipsis-h text-neutral-500 dark:text-neutral-400"></i>
                 </button>
                 {isMenuOpen && (
-                    <div className="absolute right-0 mt-2 w-48 bg-white dark:bg-[#242526] border border-neutral-200 dark:border-neutral-600 rounded-md shadow-lg z-10">
+                    <div className="absolute right-0 mt-2 w-48 bg-white dark:bg-black border border-neutral-200 dark:border-neutral-800 rounded-md shadow-lg z-10">
                         <button onClick={() => { onToggleSave(post.id); setIsMenuOpen(false); }} className="w-full text-left flex items-center px-4 py-2 text-sm hover:bg-neutral-100 dark:hover:bg-[#3A3B3C]">
                             <i className={`fa-solid ${isSaved ? 'fa-bookmark-slash' : 'fa-bookmark'} w-6 mr-2`}></i> {isSaved ? t('post.unsave') : t('post.save')}
                         </button>
@@ -231,7 +231,7 @@ const Post: React.FC<PostProps> = ({
                     <div className="flex items-center space-x-2">
                         <div className="flex -space-x-1.5">
                             {sortedReactions.slice(0, 3).map(([reaction]) => (
-                                <div key={reaction} title={reactionLabels[reaction]} className={`w-4 h-4 rounded-full flex items-center justify-center text-white text-[9px] ${reactionColors[reaction].bg} ring-1 ring-white dark:ring-[#242526]`}>
+                                <div key={reaction} title={reactionLabels[reaction]} className={`w-4 h-4 rounded-full flex items-center justify-center text-white text-[9px] ${reactionColors[reaction].bg} ring-1 ring-white dark:ring-black`}>
                                    <i className={`fa-solid ${reactionIcons[reaction]}`}></i>
                                 </div>
                             ))}
@@ -245,7 +245,7 @@ const Post: React.FC<PostProps> = ({
             </div>
         </div>
         
-        <hr className="border-neutral-200 dark:border-neutral-700 my-2" />
+        <hr className="border-neutral-200 dark:border-neutral-800 my-2" />
 
         <div className="flex justify-around">
             <div

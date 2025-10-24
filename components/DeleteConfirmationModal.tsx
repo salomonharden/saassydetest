@@ -25,11 +25,11 @@ const DeleteConfirmationModal: React.FC<DeleteConfirmationModalProps> = ({ isOpe
     >
       {/* The modal content container. Clicks inside are stopped from propagating to the overlay. */}
       <div
-        className="bg-white dark:bg-[#242526] rounded-lg shadow-xl w-full max-w-md"
+        className="bg-white dark:bg-black rounded-lg shadow-xl w-full max-w-md"
         onClick={e => e.stopPropagation()}
       >
         {/* Modal Header */}
-        <div className="p-4 border-b border-neutral-200 dark:border-neutral-600">
+        <div className="p-4 border-b border-neutral-200 dark:border-neutral-800">
           <h2 className="text-xl font-bold">{title}</h2>
         </div>
         

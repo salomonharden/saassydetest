@@ -17,8 +17,8 @@ interface SettingsPageProps {
 
 // Reusable component for a settings section card.
 const SettingsCard: React.FC<{ title: string; children: React.ReactNode }> = ({ title, children }) => (
-    <div className="bg-white dark:bg-[#242526] rounded-lg shadow-md">
-        <div className="p-4 border-b border-neutral-200 dark:border-neutral-600">
+    <div className="bg-white dark:bg-black rounded-lg shadow-md">
+        <div className="p-4 border-b border-neutral-200 dark:border-neutral-800">
             <h2 className="text-lg font-bold">{title}</h2>
         </div>
         <div className="p-4 space-y-4">
@@ -70,7 +70,8 @@ const themeColors = [
 ];
 
 // The SettingsPage functional component.
-const SettingsPage: React.FC<SettingsPageProps> = ({ currentUser, onUpdateUser, isDarkMode, onToggleTheme, themeColor, onThemeColorChange }) => {
+// FIX: Changed to a named export to resolve circular dependency issues.
+export const SettingsPage: React.FC<SettingsPageProps> = ({ currentUser, onUpdateUser, isDarkMode, onToggleTheme, themeColor, onThemeColorChange }) => {
     // Use the i18n hook to get the translation function.
     const { t } = useI18n();
     
@@ -161,7 +162,7 @@ const SettingsPage: React.FC<SettingsPageProps> = ({ currentUser, onUpdateUser, 
                                 <button
                                     key={theme.name}
                                     onClick={() => onThemeColorChange(theme.name)}
-                                    className={`w-8 h-8 rounded-full transition-transform hover:scale-110 ${themeColor === theme.name ? 'ring-2 ring-offset-2 ring-offset-white dark:ring-offset-[#242526] ring-current' : ''}`}
+                                    className={`w-8 h-8 rounded-full transition-transform hover:scale-110 ${themeColor === theme.name ? 'ring-2 ring-offset-2 ring-offset-white dark:ring-offset-black ring-current' : ''}`}
                                     style={{ backgroundColor: theme.color, color: theme.color }}
                                     aria-label={`Select ${theme.name} theme`}
                                 />
@@ -188,7 +189,7 @@ const SettingsPage: React.FC<SettingsPageProps> = ({ currentUser, onUpdateUser, 
                         <FormField id="bio" label="Bio" value={formData.bio} onChange={handleChange} type="textarea" />
                         <FormField id="location" label="Location" value={formData.location} onChange={handleChange} />
                         
-                        <hr className="border-neutral-200 dark:border-neutral-600"/>
+                        <hr className="border-neutral-200 dark:border-neutral-800"/>
 
                         {/* Skills Editing */}
                         <div>
@@ -207,7 +208,7 @@ const SettingsPage: React.FC<SettingsPageProps> = ({ currentUser, onUpdateUser, 
                             />
                         </div>
                         
-                        <hr className="border-neutral-200 dark:border-neutral-600"/>
+                        <hr className="border-neutral-200 dark:border-neutral-800"/>
 
                         {/* Portfolio Editing */}
                         <div>
@@ -240,62 +241,4 @@ const SettingsPage: React.FC<SettingsPageProps> = ({ currentUser, onUpdateUser, 
                                  <input
                                     type="url"
                                     name="url"
-                                    value={newPortfolioItem.url}
-                                    onChange={handlePortfolioChange}
-                                    placeholder="https://..."
-                                    className="w-full bg-neutral-100 dark:bg-[#3A3B3C] rounded-md p-2 focus:ring-2 focus:ring-accent focus:outline-none"
-                                />
-                            </div>
-                             <button 
-                                type="button" 
-                                onClick={handleAddPortfolioItem} 
-                                className="mt-2 bg-neutral-200 hover:bg-neutral-300 dark:bg-[#3A3B3C] dark:hover:bg-neutral-600 text-neutral-800 dark:text-neutral-200 font-semibold py-2 px-4 rounded-lg transition-colors text-sm w-full sm:w-auto"
-                            >
-                                Add Portfolio Link
-                            </button>
-                        </div>
-
-                        <div className="flex justify-end items-center pt-4">
-                             {saveSuccess && <span className="text-sm text-green-600 dark:text-green-400 mr-4">Changes saved!</span>}
-                             <button type="submit" className="bg-accent hover:bg-accent-hover text-accent-text-over font-bold py-2 px-6 rounded-lg transition-colors">
-                                Save Changes
-                            </button>
-                        </div>
-                    </form>
-                </SettingsCard>
-            </div>
-
-            {/* Account Settings */}
-            <div className="animate-fade-in-slide-up" style={{ animationDelay: '300ms' }}>
-                <SettingsCard title="Account">
-                    <FormField id="password" label="Current Password" value="" onChange={() => {}} type="password" />
-                    <FormField id="newPassword" label="New Password" value="" onChange={() => {}} type="password" />
-                    <hr className="border-neutral-200 dark:border-neutral-600"/>
-                     <div className="flex items-center justify-between">
-                        <div>
-                            <p className="font-medium">Deactivate Account</p>
-                            <p className="text-sm text-neutral-500 dark:text-neutral-400">This action cannot be undone.</p>
-                        </div>
-                        <button onClick={() => setIsDeactivateModalOpen(true)} className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg transition-colors">
-                            Deactivate
-                        </button>
-                    </div>
-                </SettingsCard>
-            </div>
-            
-            {/* Deactivation Modal */}
-            <DeleteConfirmationModal
-                isOpen={isDeactivateModalOpen}
-                onClose={() => setIsDeactivateModalOpen(false)}
-                onConfirm={() => {
-                    alert("Account deactivation logic would go here.");
-                    setIsDeactivateModalOpen(false);
-                }}
-                title="Deactivate Account"
-                message="Are you sure you want to deactivate your account? All of your data will be permanently removed. This action cannot be undone."
-            />
-        </div>
-    );
-};
-
-export default SettingsPage;
+                                    value

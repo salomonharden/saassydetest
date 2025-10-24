@@ -71,7 +71,7 @@ const SavedPostsPage: React.FC<SavedPostsPageProps> = ({
                 ))
             ) : (
                 // If there are no saved posts, display a message.
-                <div className="text-center py-10 bg-white dark:bg-[#242526] rounded-lg shadow-md mt-6 animate-fade-in-slide-up" style={{ animationDelay: '100ms' }}>
+                <div className="text-center py-10 bg-white dark:bg-black rounded-lg shadow-md mt-6 animate-fade-in-slide-up" style={{ animationDelay: '100ms' }}>
                     <i className="fa-solid fa-bookmark text-4xl text-neutral-400 dark:text-neutral-500 mb-4"></i>
                     <h3 className="font-semibold text-lg text-neutral-800 dark:text-neutral-200">No saved posts</h3>
                     <p className="text-neutral-500 dark:text-neutral-400">You can save posts to find them easily later.</p>

@@ -13,7 +13,7 @@ const WhoToFollow: React.FC<WhoToFollowProps> = ({ users, onViewProfile, onToggl
   }
 
   return (
-    <div className="bg-white dark:bg-[#242526] rounded-lg shadow-md p-4 mb-4">
+    <div className="bg-white dark:bg-black rounded-lg shadow-md p-4 mb-4">
       <h2 className="text-xl font-bold text-neutral-900 dark:text-neutral-100 mb-3">Who to Follow</h2>
       <div className="space-y-3">
         {users.map(user => (

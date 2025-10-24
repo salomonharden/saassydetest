@@ -24,7 +24,8 @@ import PopularPage from './components/PopularPage';
 import TeamChatPage from './components/TeamChatPage';
 import SavedPostsPage from './components/SavedPostsPage';
 import SearchResultsPage from './components/SearchResultsPage';
-import SettingsPage from './components/SettingsPage';
+// FIX: Changed to a named import to resolve circular dependency issues.
+import { SettingsPage } from './components/SettingsPage';
 import AdminPage from './components/AdminPage';
 import { CreatePostModal } from './components/CreatePost';
 import FeedbackModal from './components/FeedbackCard';
@@ -233,6 +234,36 @@ interface Route {
     params: { [key: string]: string | undefined };
 }
 
+// Function to parse the current URL path into a route object.
+const parsePath = (path: string): Route => {
+    const segments = path.split('/').filter(Boolean); // Filter out empty strings
+    const page = segments[0] || 'home'; // Default to 'home' if path is '/'
+
+    switch(page) {
+        case 'home':
+            return { page: 'home', params: {} };
+        case 'profile':
+            return { page: 'profile', params: { userId: segments[1] } };
+        case 'post':
+            return { page: 'postDetail', params: { postId: segments[1] } };
+        case 'team':
+            if (segments[1] && segments[2] === 'chat') {
+                return { page: 'teamChat', params: { postId: segments[1] } };
+            }
+            break;
+        case 'following':
+        case 'teams':
+        case 'notifications':
+        case 'popular':
+        case 'saved':
+        case 'settings':
+        case 'admin':
+            return { page: page as Page, params: {} };
+    }
+    // Fallback for unknown paths
+    return { page: 'home', params: {} };
+};
+
 // The main App component.
 const App: React.FC = () => {
   // --- STATE MANAGEMENT ---
@@ -343,53 +374,21 @@ const App: React.FC = () => {
         }
     }, [session, users]);
 
-  // Effect for URL routing.
+  // Effect for URL routing using History API.
   useEffect(() => {
-    const parseHash = (): Route => {
-        const hash = window.location.hash.replace(/^#\/?/, '');
-        if (!hash) return { page: 'home', params: {} };
-        
-        const segments = hash.split('/');
-        const page = segments[0];
-
-        switch(page) {
-            case 'home':
-                return { page: 'home', params: {} };
-            case 'profile':
-                return { page: 'profile', params: { userId: segments[1] } };
-            case 'post':
-                return { page: 'postDetail', params: { postId: segments[1] } };
-            case 'team':
-                if (segments[1] && segments[2] === 'chat') {
-                    return { page: 'teamChat', params: { postId: segments[1] } };
-                }
-                break;
-            case 'following':
-            case 'teams':
-            case 'notifications':
-            case 'popular':
-            case 'saved':
-            case 'settings':
-            case 'admin':
-                return { page: page as Page, params: {} };
-        }
-        return { page: 'home', params: {} }; // Default/fallback
+    const handleLocationChange = () => {
+        const newRoute = parsePath(window.location.pathname);
+        setRoute(newRoute);
     };
 
-    const handleHashChange = () => {
-      if (window.location.hash === '' || window.location.hash === '#') {
-          window.location.hash = '/home';
-          return; // The event will fire again with the new hash.
-      }
-      const newRoute = parseHash();
-      setRoute(newRoute);
-    };
-
-    window.addEventListener('hashchange', handleHashChange);
-    handleHashChange(); // Initial load
+    // Listen for back/forward browser actions
+    window.addEventListener('popstate', handleLocationChange);
+    
+    // Initial load
+    handleLocationChange();
 
     return () => {
-        window.removeEventListener('hashchange', handleHashChange);
+        window.removeEventListener('popstate', handleLocationChange);
     };
   }, []);
 
@@ -651,6 +650,7 @@ const App: React.FC = () => {
       }
       Object.values(users).forEach((user: User) => {
         const tempPost = { ...post, currentUserReaction: null };
+        // FIX: Added generic type argument to reduce for correct type inference.
         const otherUserReacted = Object.values(post.reactions || {}).reduce<number>((a, b) => a + (b || 0), 0) > (post.currentUserReaction ? 1 : 0);
         if (otherUserReacted && Math.random() > 0.5) {
           if (!interactionsByPost.has(post.id)) interactionsByPost.set(post.id, new Set());
@@ -715,9 +715,15 @@ const App: React.FC = () => {
         path = `/team/${contextId}/chat`;
     }
     
-    if (window.location.hash.substring(1) !== path) {
-        window.location.hash = path;
+    // Only push state if the path is different
+    if (window.location.pathname !== path) {
+        window.history.pushState({}, '', path);
+        // Manually trigger a route update since pushState doesn't fire popstate
+        const newRoute = parsePath(path);
+        setRoute(newRoute);
     }
+
+    window.scrollTo(0, 0); // Scroll to top on navigation
     setSearchQuery('');
   };
 
@@ -833,7 +839,7 @@ const App: React.FC = () => {
       const targetUser = { ...newUsers[userId] };
   
       if (isCurrentlyFollowing) {
-        // Corrected: Explicitly typed the 'id' parameter in the filter callback to avoid 'unknown' type error.
+        // FIX: Explicitly typed the 'id' parameter in the filter callback to avoid 'unknown' type error.
         newCurrentUser.following = newCurrentUser.following?.filter((id: string) => id !== userId);
         targetUser.followersCount = (targetUser.followersCount || 1) - 1;
       } else {
@@ -913,7 +919,8 @@ const App: React.FC = () => {
     };
 
     const addReplyRecursively = (commentsList: CommentType[]): CommentType[] => {
-        return commentsList.map(comment => {
+// FIX: Explicitly typed the 'comment' parameter in the map callback to avoid type inference issues.
+        return commentsList.map((comment: CommentType) => {
             if (comment.id === parentId) {
                 parentCommentAuthorId = comment.authorId;
                 return { ...comment, replies: [...(comment.replies || []), newReply] };
@@ -940,7 +947,8 @@ const App: React.FC = () => {
       if (!post) return;
 
       const toggleLikeRecursively = (commentsList: CommentType[]): CommentType[] => {
-          return commentsList.map(comment => {
+// FIX: Explicitly typed the 'comment' parameter in the map callback to avoid type errors with arithmetic operations on 'comment.likes'.
+          return commentsList.map((comment: CommentType) => {
               if (comment.id === commentId) {
                   const newLikedStatus = !comment.liked;
                   const newLikesCount = newLikedStatus ? comment.likes + 1 : comment.likes - 1;
@@ -1325,7 +1333,7 @@ const App: React.FC = () => {
   }
   
   return (
-    <div className={`min-h-screen bg-neutral-100 dark:bg-[#18191A] text-neutral-900 dark:text-neutral-100 font-sans`}>
+    <div className={`min-h-screen bg-neutral-100 dark:bg-black text-neutral-900 dark:text-neutral-100 font-sans`}>
       <Header 
         onNavigate={handleNavigate}
         isDarkMode={isDarkMode}

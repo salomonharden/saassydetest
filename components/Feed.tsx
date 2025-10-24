@@ -106,7 +106,7 @@ const Feed: React.FC<FeedProps> = ({
       )}
        {/* Message to display if there are no posts and it's not loading. */}
        {!isLoading && posts.length === 0 && (
-         <div className="bg-white dark:bg-[#242526] rounded-lg shadow-md p-8 text-center text-neutral-500 dark:text-neutral-400 animate-fade-in-slide-up" style={{ animationDelay: '500ms' }}>
+         <div className="bg-white dark:bg-black rounded-lg shadow-md p-8 text-center text-neutral-500 dark:text-neutral-400 animate-fade-in-slide-up" style={{ animationDelay: '500ms' }}>
            <i className="fa-solid fa-stream text-4xl mb-4"></i>
            <h3 className="font-semibold text-lg">Your feed is empty</h3>
            <p>Posts from people you follow will appear here.</p>

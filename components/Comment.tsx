@@ -55,7 +55,7 @@ const Comment: React.FC<CommentProps> = ({ comment, onReplySubmit, onLikeComment
       <div className="flex space-x-2">
         {/* The author's avatar, clickable to view their profile. */}
         <button onClick={() => onViewProfile(author)} className="flex-shrink-0 group block" aria-label={`View profile of ${author.name}`}>
-          <img src={author.avatarUrl} alt={author.name} className="w-8 h-8 rounded-full group-hover:ring-2 group-hover:ring-offset-2 group-hover:ring-accent dark:group-hover:ring-offset-[#242526] transition-all" />
+          <img src={author.avatarUrl} alt={author.name} className="w-8 h-8 rounded-full group-hover:ring-2 group-hover:ring-offset-2 group-hover:ring-accent dark:group-hover:ring-offset-black transition-all" />
         </button>
         {/* Container for the comment text and actions. */}
         <div className="flex-grow">
@@ -138,7 +138,7 @@ const Comment: React.FC<CommentProps> = ({ comment, onReplySubmit, onLikeComment
 
       {/* The container for replies, rendered conditionally if they exist and are not collapsed. */}
       {hasReplies && !isCollapsed && (
-        <div id={`replies-for-${comment.id}`} className="pt-4 pl-5 ml-5 border-l-2 border-neutral-300 dark:border-neutral-600 space-y-4">
+        <div id={`replies-for-${comment.id}`} className="pt-4 pl-5 ml-5 border-l-2 border-neutral-300 dark:border-neutral-800 space-y-4">
           {/* Map over the replies array and recursively render the Comment component for each reply. */}
           {comment.replies.map(reply => (
             <Comment key={reply.id} comment={reply} onReplySubmit={onReplySubmit} onLikeComment={onLikeComment} currentUser={currentUser} onViewProfile={onViewProfile} allUsers={allUsers} />

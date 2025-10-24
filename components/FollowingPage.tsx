@@ -19,11 +19,11 @@ const FollowingUserCard: React.FC<FollowingUserCardProps> = ({ user, onToggleFol
 
     return (
         // The main card container.
-        <div className="bg-white dark:bg-[#242526] rounded-lg shadow-md p-4 flex items-center justify-between space-x-4">
+        <div className="bg-white dark:bg-black rounded-lg shadow-md p-4 flex items-center justify-between space-x-4">
             {/* Clickable area for user info, which navigates to their profile. */}
             <button onClick={() => onViewProfile(user)} className="flex items-center space-x-4 flex-grow min-w-0 group">
                 {/* User's avatar. */}
-                <img src={user.avatarUrl} alt={user.name} className="w-14 h-14 rounded-full flex-shrink-0 group-hover:ring-2 group-hover:ring-offset-2 group-hover:ring-accent dark:group-hover:ring-offset-[#242526] transition-all" />
+                <img src={user.avatarUrl} alt={user.name} className="w-14 h-14 rounded-full flex-shrink-0 group-hover:ring-2 group-hover:ring-offset-2 group-hover:ring-accent dark:group-hover:ring-offset-black transition-all" />
                 {/* User's name and bio. */}
                 <div className="text-left min-w-0">
                     <p className="font-bold text-neutral-900 dark:text-neutral-100 truncate group-hover:underline">{user.name}</p>
@@ -79,7 +79,7 @@ const FollowingPage: React.FC<FollowingPageProps> = ({ users, onToggleFollow, on
                     ))
                 ) : (
                     // If not, display a message indicating they aren't following anyone.
-                    <div className="text-center py-10 bg-white dark:bg-[#242526] rounded-lg shadow-md animate-fade-in-slide-up" style={{ animationDelay: '200ms' }}>
+                    <div className="text-center py-10 bg-white dark:bg-black rounded-lg shadow-md animate-fade-in-slide-up" style={{ animationDelay: '200ms' }}>
                         <i className="fa-solid fa-user-group text-4xl text-neutral-400 dark:text-neutral-500 mb-4"></i>
                         <p className="text-neutral-500 dark:text-neutral-400">{t('followingPage.noFollowing')}</p>
                     </div>
